@@ -4,7 +4,7 @@
   "description": "Regexp based dependency (require) checker for JS files.",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/tape/bin/tape spec/*Spec.js"
+    "test": "node_modules/istanbul/lib/cli.js cover node_modules/tape/bin/tape -- spec/*Spec.js"
   },
   "bin": {
     "js-deps": "cli.js"
@@ -29,6 +29,7 @@
   "devDependencies": {
     "eslint": "^3.3.1",
     "eslint-config-google": "^0.6.0",
+    "istanbul": "^0.4.5",
     "mock-cli": "^0.1.2",
     "mock-fs": "^3.11.0",
     "tape": "^4.6.0"
