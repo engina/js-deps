@@ -1,0 +1,39 @@
+{
+  "name": "js-deps",
+  "version": "0.1.0",
+  "description": "Regexp based dependency (require) checker for JS files.",
+  "main": "index.js",
+  "scripts": {
+    "test": "istanbul cover -x 'spec/**/*' node_modules/tape/bin/tape spec/*Spec.js"
+  },
+  "bin": {
+    "js-deps": "cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/engina/ea-deps.git"
+  },
+  "keywords": [
+    "dependency",
+    "builder",
+    "parser",
+    "require",
+    "cyclic"
+  ],
+  "author": "Engin Aydogan <engin@bzzzt.biz>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/engina/ea-deps/issues"
+  },
+  "homepage": "https://github.com/engina/ea-deps#readme",
+  "devDependencies": {
+    "eslint": "^3.3.1",
+    "eslint-config-google": "^0.6.0",
+    "mock-cli": "^0.1.2",
+    "mock-fs": "^3.11.0",
+    "tape": "^4.6.0"
+  },
+  "dependencies": {
+    "yargs": "^5.0.0"
+  }
+}
