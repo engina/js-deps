@@ -4,7 +4,7 @@
   "description": "Regexp based dependency (require) checker for JS files.",
   "main": "index.js",
   "scripts": {
-    "test": "istanbul cover -x 'spec/**/*' node_modules/tape/bin/tape spec/*Spec.js"
+    "test": "node_modules/tape/bin/tape spec/*Spec.js"
   },
   "bin": {
     "js-deps": "cli.js"
