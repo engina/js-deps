@@ -1,5 +1,5 @@
-const fs   = require('fs');
-const path = require('path');
+var fs   = require('fs');
+var path = require('path');
 
 function unique(value, index, self) {
   return self.indexOf(value) === index;
@@ -18,9 +18,9 @@ function unique(value, index, self) {
  * @return {Array} dependencies
  */
 function parseDeps(source) {
-  let re = /^(?:(?:const|var|let)\s+)?\w+\s*\=.*(?:require\((?:\'|\"))(.*)(?:\'|\").*$/gm;
-  let m;
-  let result = [];
+  var re = /^(?:(?:const|var|let)\s+)?\w+\s*\=.*(?:require\((?:\'|\"))(.*)(?:\'|\").*$/gm;
+  var m;
+  var result = [];
   while ((m = re.exec(source)) !== null) {
     if (m.index === re.lastIndex) {
       re.lastIndex++;
@@ -59,20 +59,21 @@ function normalize(filename) {
  * @param {any} [breadcrumbs=[]] Used to keep track of cycling references, do not touch.
  * @return {Array} List of dependencies in the order they are found.
  * */
-function analyze(file, breadcrumbs = []) {
-  let result = [];
+function analyze(file, breadcrumbs) {
+  breadcrumbs = breadcrumbs || [];
+  var result = [];
   file = path.resolve(file);
-  if (breadcrumbs.includes(file)) {
+  if (breadcrumbs.indexOf(file) !== -1) {
     return [];
   }
   breadcrumbs.push(file);
-  let text = fs.readFileSync(file, 'utf8');
-  let deps = parseDeps(text);
+  var text = fs.readFileSync(file, 'utf8');
+  var deps = parseDeps(text);
 
-  for (let dep of deps) {
+  for (var dep of deps) {
     if (dep[0] === '.') {
       dep = normalize(dep);
-      let child = path.resolve(path.join(path.dirname(file), dep));
+      var child = path.resolve(path.join(path.dirname(file), dep));
       result.push(child);
       result = result.concat(analyze(child, breadcrumbs));
     } else {

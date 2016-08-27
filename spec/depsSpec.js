@@ -1,11 +1,11 @@
-const test = require('tape');
-const mock = require('mock-fs');
-const deps = require('../index');
-const fixtures = require('./fixtures');
+var test = require('tape');
+var mock = require('mock-fs');
+var deps = require('../index');
+var fixtures = require('./fixtures');
 
 test('should parse deps properly', t => {
-  let actual = deps.parseDeps(fixtures.source);
-  let expected = [
+  var actual = deps.parseDeps(fixtures.source);
+  var expected = [
     'bluebird',
     'path',
     'fs-extra',
@@ -31,12 +31,12 @@ test('should parse deps properly', t => {
 
 test('should handle cyclic dependency', t => {
   mock(fixtures.fs);
-  let expected = [
+  var expected = [
     '/home/foo/b.js',
     '/home/foo/c.js',
     '/home/foo/a.js'
   ];
-  let actual = deps.analyze('/home/foo/a.js');
+  var actual = deps.analyze('/home/foo/a.js');
   mock.restore();
   t.deepEqual(actual, expected);
   t.end();
@@ -44,8 +44,8 @@ test('should handle cyclic dependency', t => {
 
 test('should handle give proper result even with cyclic dependency', t => {
   mock(fixtures.fs);
-  let actual = deps.analyze('/home/foo/d.js');
-  let expected = [
+  var actual = deps.analyze('/home/foo/d.js');
+  var expected = [
     '/home/foo/lib/e.js',
     '/home/foo/b.js',
     '/home/foo/c.js',

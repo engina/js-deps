@@ -1,5 +1,7 @@
-const deps = require('./index');
-const argv = require('yargs')
+#!/usr/bin/env node
+
+var deps = require('./index');
+var argv = require('yargs')
 .usage('$0 [args] file')
 .demand(1)
 .alias('a', 'all')
@@ -10,7 +12,7 @@ const argv = require('yargs')
 .alias('h', 'help')
 .argv;
 
-let result = deps.analyze(deps.normalize(argv._[0]));
+var result = deps.analyze(deps.normalize(argv._[0]));
 
 if (!argv.all) {
   result = result.filter(val => val[0] === '/');
@@ -19,7 +21,7 @@ if (!argv.all) {
 if (argv.json) {
   console.log(JSON.stringify(result, null, 2));
 } else {
-  for (let r of result) {
+  for (var r of result) {
     console.log(r);
   }
 }
