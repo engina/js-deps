@@ -3,7 +3,9 @@
 [![Build status](https://img.shields.io/travis/engina/js-deps.svg?style=flat-square)](https://travis-ci.org/request/request)
 [![Coverage](https://img.shields.io/codecov/c/github/engina/js-deps.svg?style=flat-square)](https://codecov.io/github/request/request?branch=master)
 
-Simple Reg Exp based dependency parser for nodejs source files that is supposed to cover 99% of the cases.
+Simple Reg Exp based dependency parser for nodejs source files that is supposed to cover 99% of the cases. It supports cyclic dependencies.
+
+> Check [gulp-js-deps](https://github.com/engina/gulp-js-deps) out to see how you can use this to launch only the unit tests affected by the change.
 
 It can parse require statements like this:
 ```javascript
@@ -52,12 +54,42 @@ The output will be:
   'hello6'
 ]
 ```
-### Caveats
-1. It doesn't parse more than one require per line.
-2. It doesn't parse module.exports = require() type of lines either.
 
-Since deps is supposed to be used in your build toolchain for your own code and it is very easy to re-write not supported formats into supported ones. These two cases are not covered.
-  
+But it won't match:
+
+```javascript
+debug('Problem with require("test")')
+```
+
+If there's a circular dependency, it will cut off at the moment circular dependency is detected but won't issue any errors.
+```
+- index.js
+  |- lib/a.js <----|
+  |- lib/b.js      |
+  |  |- lib/a.js --|
+  +- lib/c.js
+```
+
+It will report:
+```
+$ js-deps index.js
+/Users/engin/tmp/lib/a.js
+/Users/engin/tmp/lib/b.js
+/Users/engin/tmp/lib/c.js
+```
+
+### Caveats
+It doesn't support:
+```javascript
+// Double requires
+var a = require('foo')(require('bar'));
+// module exports
+module.exports = require('foo')
+// just requires without assignment
+require('foo')
+```
+While it is possible to add support for these scenarios, js-deps is supposed to be used in your build toolchain for your own code and it is very easy to re-write not supported formats into supported ones.
+
 ## Install
 -------
 ```

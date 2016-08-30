@@ -8,6 +8,7 @@ module.exports.fs = {
   '/home/foo/lib/f.js': 'var a = require("hello");\nvar b = require("./g")',
   '/home/foo/lib/g.js': 'var c = require("hello2")'
 };
+
 module.exports.source = `const Promise   = require('bluebird');
 const path      = require('path');
 const fse       = Promise.promisifyAll(require('fs-extra'));

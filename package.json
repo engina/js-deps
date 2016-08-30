@@ -1,7 +1,7 @@
 {
   "name": "js-deps",
   "version": "0.1.1",
-  "description": "Regexp based dependency (require) checker for JS files.",
+  "description": "Regexp based dependency (require) parser for JS files.",
   "main": "index.js",
   "scripts": {
     "test": "node_modules/istanbul/lib/cli.js cover node_modules/tape/bin/tape -- spec/*Spec.js"
