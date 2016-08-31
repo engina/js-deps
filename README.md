@@ -1,7 +1,7 @@
 # js-deps
 
-[![Build status](https://img.shields.io/travis/engina/js-deps.svg?style=flat-square)](https://travis-ci.org/request/request)
-[![Coverage](https://img.shields.io/codecov/c/github/engina/js-deps.svg?style=flat-square)](https://codecov.io/github/request/request?branch=master)
+[![Build status](https://img.shields.io/travis/engina/js-deps.svg?style=flat-square)](https://travis-ci.org/engina/js-deps)
+[![Coverage](https://img.shields.io/codecov/c/github/engina/js-deps.svg?style=flat-square)](https://codecov.io/github/engina/js-deps?branch=master)
 
 Simple Reg Exp based dependency parser for nodejs source files that is supposed to cover 99% of the cases. It supports cyclic dependencies.
 
