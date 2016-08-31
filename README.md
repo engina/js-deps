@@ -108,6 +108,23 @@ deps.parseDeps(sourceCodeString);
 // Returns an array of absolute paths of all requires.
 deps.analyze(filePath);
 ```
+### analyze(filePath[, options])
+
+#### filePath: string
+Path of the JS source file
+
+#### options: object
+```javascript
+{
+  // If false, throws an exception when cyclic dependency is detected
+  // Default: true
+  ignoreCyclic: true,
+
+  // If false, throws an exception when a missing local require is detected
+  // Default: true
+  ignoreMissing: true, 
+}
+```
 
 ## CLI
 Install via:
