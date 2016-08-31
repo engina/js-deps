@@ -6,7 +6,9 @@ module.exports.fs = {
   '/home/foo/d.js': 'var a = require("./lib/e");\nvar b = require("./lib/f")\n',
   '/home/foo/lib/e.js': 'var a = require("../b");',
   '/home/foo/lib/f.js': 'var a = require("hello");\nvar b = require("./g")',
-  '/home/foo/lib/g.js': 'var c = require("hello2")'
+  '/home/foo/lib/g.js': 'var c = require("hello2")',
+
+  '/home/foo/missing-require.js': 'var a = require("./does-not-exist")'
 };
 
 module.exports.source = `const Promise   = require('bluebird');

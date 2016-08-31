@@ -59,15 +59,32 @@ function normalize(filename) {
  * @param {any} [breadcrumbs=[]] Used to keep track of cycling references, do not touch.
  * @return {Array} List of dependencies in the order they are found.
  * */
-function analyze(file, breadcrumbs) {
+function analyze(file, opts, breadcrumbs) {
+  var defaults = {
+    ignoreMissing: true,
+    ignoreCyclic: true
+  };
+  opts = Object.assign(defaults, opts);
   breadcrumbs = breadcrumbs || [];
   var result = [];
   file = path.resolve(file);
   if (breadcrumbs.indexOf(file) !== -1) {
+    if (!opts.ignoreCyclic) {
+      throw new Error('Cyclic dependency detected ' + JSON.stringify(breadcrumbs.concat(file)));
+    }
     return [];
   }
   breadcrumbs.push(file);
-  var text = fs.readFileSync(file, 'utf8');
+  var text;
+  try {
+    text = fs.readFileSync(file, 'utf8');
+  } catch (err) {
+    if (err.code === 'ENOENT' && opts.ignoreMissing) {
+      // swallow
+      return [];
+    }
+    throw err;
+  }
   var deps = parseDeps(text);
 
   for (var dep of deps) {
@@ -75,7 +92,7 @@ function analyze(file, breadcrumbs) {
       dep = normalize(dep);
       var child = path.resolve(path.join(path.dirname(file), dep));
       result.push(child);
-      result = result.concat(analyze(child, breadcrumbs));
+      result = result.concat(analyze(child, opts, breadcrumbs));
     } else {
       result.push(dep);
     }
