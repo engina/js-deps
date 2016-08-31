@@ -28,6 +28,7 @@ var got2 =require('hello4');
 let got2 =require('hello5');
 got2 =require('hello6');
 //got2 =require('should not be found');
+    spacePadded = require('spacePadded');
 ```
 
 The output will be:
@@ -51,7 +52,8 @@ The output will be:
   'hello3',
   'hello4',
   'hello5',
-  'hello6'
+  'hello6',
+  'spacePadded'
 ]
 ```
 

@@ -10,7 +10,7 @@ function unique(value, index, self) {
  * expressions. See spec/fixtures.js and spec/depsSpec.js for supported
  * formats.
  *
- * Live playground is here: https://regex101.com/r/xW3lQ2/3
+ * Live playground is here: https://regex101.com/r/xW3lQ2/5
  *
  * Does not recurse. For that @see analyze.
  *
@@ -18,7 +18,7 @@ function unique(value, index, self) {
  * @return {Array} dependencies
  */
 function parseDeps(source) {
-  var re = /^(?:(?:const|var|let)\s+)?\w+\s*\=.*(?:require\((?:\'|\"))(.*)(?:\'|\").*$/gm;
+  var re = /^\s*(?:(?:const|var|let)\s+)?\w+\s*\=.*(?:require\((?:\'|\"))(.*)(?:\'|\").*$/gm;
   var m;
   var result = [];
   while ((m = re.exec(source)) !== null) {

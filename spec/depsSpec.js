@@ -23,7 +23,8 @@ test('should parse deps properly', t => {
     'hello3',
     'hello4',
     'hello5',
-    'hello6'
+    'hello6',
+    'spacePadded'
   ];
   t.deepEqual(actual, expected, 'yes');
   t.end();
