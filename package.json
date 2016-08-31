@@ -1,6 +1,6 @@
 {
   "name": "js-deps",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Regexp based dependency (require) parser for JS files.",
   "main": "index.js",
   "scripts": {
