@@ -29,6 +29,10 @@ let got2 =require('hello5');
 got2 =require('hello6');
 //got2 =require('should not be found');
     spacePadded = require('spacePadded');
+// Hello
+var test1 = require('test1'),
+    test2 = require('test2'),
+    test3 = require('test3');
 ```
 
 The output will be:
@@ -53,7 +57,10 @@ The output will be:
   'hello4',
   'hello5',
   'hello6',
-  'spacePadded'
+  'spacePadded',
+  'test1',
+  'test2',
+  'test3'
 ]
 ```
 

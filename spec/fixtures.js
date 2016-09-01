@@ -32,5 +32,8 @@ got2 =require('hello6');
 //got2 =require('should not be found');
     spacePadded = require('spacePadded');
 // Hello
+var test1 = require('test1'),
+    test2 = require('test2'),
+    test3 = require('test3');
 `;
 

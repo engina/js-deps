@@ -24,7 +24,10 @@ test('js-dep', t => {
     'hello4',
     'hello5',
     'hello6',
-    'spacePadded'
+    'spacePadded',
+    'test1',
+    'test2',
+    'test3'
   ];
   t.deepEqual(actual, expected, 'should parse supported require formats');
   t.end();
